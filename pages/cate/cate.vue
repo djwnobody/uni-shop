@@ -1,5 +1,7 @@
 <template>
   <view>
+    <my-search></my-search>
+    
     <view class="scroll-view-container">
       <!-- 左侧一级分类 -->
       <scroll-view scroll-y class="left-cart" :style="{height: wh + 'px'}">
@@ -44,7 +46,7 @@
     },
     onLoad() {
       let res = uni.getSystemInfoSync()
-      this.wh = res.windowHeight
+      this.wh = res.windowHeight - 50     // 搜索栏占50
       this.getCate()
     },
     methods: {

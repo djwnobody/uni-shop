@@ -224,7 +224,8 @@ s<template>
 		flex-direction: row;
 		position: relative;
 		padding: 10px;
-		// background-color: #fff;
+    // 搜索框外面的
+		background-color: #c00000;
 	}
 
 	.uni-searchbar__box {

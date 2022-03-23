@@ -1,5 +1,9 @@
 <template>
   <view>
+    <!-- 首页需要吸顶，分类页不需要 -->
+    <view class="search-sticky">
+      <my-search></my-search>
+    </view>
     <!-- 轮播图 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" circular>
       <swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -92,7 +96,11 @@
   image {
     display: block;
   }
-
+.search-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999; // 与轮播图重叠时，显示轮播图
+}
   // 轮播图
   swiper {
     height: 350rpx;
