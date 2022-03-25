@@ -39,17 +39,22 @@
 </template>
 
 <script>
+  import {
+    mapGetters
+  } from 'vuex'
   export default {
     data() {
       return {
+        // 这一件商品的所有信息
         detailInfo: {},
+        // 底部的配置
         options: [{
           icon: 'shop',
           text: '店铺',
         }, {
           icon: 'cart',
           text: '购物车',
-          info: 2
+          info: 0
         }],
         buttonGroup: [{
             text: '加入购物车',
@@ -68,7 +73,21 @@
       let id = options.goods_id
       this.getDetail(id)
     },
+    computed: {
+      ...mapGetters('my_cart', ['total'])
+    },
+    watch: {
+      // 页面第一次显示时,不会调用普通函数定义的watch，有immediate才会第一次显示，就调用
+      total: {
+        handler(newVal) {
+        const finder = this.options.find(item => item.text === '购物车')
+        finder.info = newVal
+        },
+        immediate:true
+      }
+    },
     methods: {
+      // 获得这一件商品的信息
       async getDetail(id) {
         let res = await uni.$http.get('/api/public/v1/goods/detail', {
           goods_id: id
@@ -78,17 +97,36 @@
           '<img style="display:block;" ').replace(/webp/g, 'jpg')
         this.detailInfo = res.data.message
       },
+      // 图片预览
       preview(i) {
         uni.previewImage({
           current: i,
           urls: this.detailInfo.pics.map(x => x.pics_big)
         })
       },
+      // 跳转cart页面
       onClick(e) {
         if (e.content.text === '购物车') {
+          // 跳转至cart页面
           uni.switchTab({
             url: '/pages/cart/cart'
           })
+        }
+      },
+      // vuex购物车添加信息
+      buttonClick(e) {
+        if (e.content.text === '加入购物车') {
+          // { goods_id, goods_name, goods_price, goods_count, goods_small_logo, goods_state }
+          // vuex添加good
+          const good = {
+            goods_id: this.detailInfo.goods_id,
+            goods_name: this.detailInfo.goods_id,
+            goods_price: this.detailInfo.goods_price,
+            goods_count: 1,
+            goods_small_logo: this.detailInfo.goods_small_logo,
+            goods_state: true
+          }
+          this.$store.dispatch('my_cart/add', good)
         }
       }
     }

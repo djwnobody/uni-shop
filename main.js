@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App'
 import {$http} from '@escook/request-miniprogram'
+import store from './store/store.js'  // 第一个点没了，就报错。这里依然是vue语法，@/ 这是项目根目录
 
 uni.$http = $http
 $http.baseUrl = 'https://www.uinav.com'
@@ -21,7 +22,8 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue({
-  ...App
+  ...App,
+  store
 })
 app.$mount()
 // #endif

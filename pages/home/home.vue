@@ -46,6 +46,7 @@
 </template>
 
 <script>
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
     data() {
       return {
@@ -54,24 +55,27 @@
         floorList: []
       };
     },
+    mixins:[badgeMix],
     onLoad() {
       this.getSwiper()
       this.getCate()
       this.getFloor()
     },
     methods: {
+      // 获取轮播图信息
       async getSwiper() {
         let res = await uni.$http.get('/api/public/v1/home/swiperdata')
         this.swiperList = res.data.message
       },
+      // 获取中间一行4块分类信息
       async getCate() {
         let res = await uni.$http.get('/api/public/v1/home/catitems')
         this.cateList = res.data.message
       },
+      // 获取底部信息
       async getFloor() {
         let res = await uni.$http.get('/api/public/v1/home/floordata')
         this.floorList = res.data.message
-        console.log(res.data.message);
         res.data.message.forEach(item => {
           item.product_list.forEach(item2 => {
             item2.url = '/subpkg/goods_list/goods_list?' + item2.navigator_url.split('?')[1]

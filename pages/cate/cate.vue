@@ -29,6 +29,7 @@
 </template>
 
 <script>
+  import badgeMix from '@/mixins/tabbar-badge.js'
   export default {
     data() {
       return {
@@ -44,6 +45,7 @@
         scrollTop: 0,
       }
     },
+    mixins:[badgeMix],
     onLoad() {
       let res = uni.getSystemInfoSync()
       this.wh = res.windowHeight - 50     // 搜索栏占50

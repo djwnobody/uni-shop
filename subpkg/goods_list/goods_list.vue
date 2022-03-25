@@ -54,7 +54,6 @@
         this.total = res.data.message.total
       },
       toDetail(item){
-        console.log(item);
         uni.navigateTo({
           url:"../goods_detail/goods_detail?goods_id=" + item.goods_id
         })
