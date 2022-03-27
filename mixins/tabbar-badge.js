@@ -3,6 +3,11 @@ export default {
   computed:{
     ...mapGetters('my_cart',['total'])
   },
+  watch:{
+    total(){
+      this.setBadge()
+    }
+  },
   onShow(){
     this.setBadge()
   },

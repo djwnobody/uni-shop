@@ -27,7 +27,7 @@
       </view>
     </view>
 
-    <!-- 一连串的图 -->
+    <!-- 返回的html，渲染为一连串的图 -->
     <rich-text :nodes="detailInfo.goods_introduce"></rich-text>
 
     <!-- 底部区域 -->
@@ -120,7 +120,7 @@
           // vuex添加good
           const good = {
             goods_id: this.detailInfo.goods_id,
-            goods_name: this.detailInfo.goods_id,
+            goods_name: this.detailInfo.goods_name,
             goods_price: this.detailInfo.goods_price,
             goods_count: 1,
             goods_small_logo: this.detailInfo.goods_small_logo,

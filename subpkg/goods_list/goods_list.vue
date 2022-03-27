@@ -1,8 +1,8 @@
 <template>
   <view>
     <view class="goods-box">
-      <view v-for="(it,i) in goodsList" :key="i" @click="toDetail(it)">
-        <my-goods :item="it"></my-goods>
+      <view v-for="(item,i) in goodsList" :key="i" @click="toDetail(item)">
+        <my-goods :goods="item"></my-goods>
       </view>
     </view>
   </view>
