@@ -92,6 +92,7 @@
         let res = await uni.$http.get('/api/public/v1/goods/detail', {
           goods_id: id
         })
+        console.log(res);
         // 解决图片下有一行空白和ios不显示webp格式图片
         res.data.message.goods_introduce = res.data.message.goods_introduce.replace(/<img /g,
           '<img style="display:block;" ').replace(/webp/g, 'jpg')

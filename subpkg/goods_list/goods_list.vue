@@ -48,6 +48,7 @@
       async getGoods(cb) {
         this.isLoading = true
         let res = await uni.$http.get('/api/public/v1/goods/search', this.queryObj)
+        console.log(res);
         this.isLoading = false
         cb && cb()
         this.goodsList = [...this.goodsList,...res.data.message.goods]

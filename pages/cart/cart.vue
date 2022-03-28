@@ -97,6 +97,7 @@
     padding-bottom: 50px;
   }
 
+  // 空空如也
   .empty-cart {
     display: flex;
     flex-direction: column;
@@ -105,7 +106,6 @@
 
     .empty-img {
       width: 90px;
-      height: 90px;
     }
 
     .text {

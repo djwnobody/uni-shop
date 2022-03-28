@@ -54,11 +54,11 @@ export default {
       state.cart.forEach(good => c += good.goods_count) // 这里可以理解为执行了 c += 语句，最后return c，但是没人接收不用管
       return c
     },
-    // 计算选中的数量
+    // 计算选中的总数量
     checkedCount(state){
       return state.cart.filter(item => item.goods_state).reduce((total,item) => total += item.goods_count,0)
     },
-    // 选中的总价格
+    // 选中所有商品的总价格
     totalPrice(state){
       return state.cart.filter(item => item.goods_state).reduce((total,item) => total += item.goods_count * item.goods_price,0).toFixed(2)
     }
